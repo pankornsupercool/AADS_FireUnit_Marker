@@ -1,0 +1,8 @@
+/AADS/bin/Debug/*
+/AADS/bin/Release/*
+/AADS/obj/Debug/*
+/AADS/obj/Release/*
+/.vs/
+!/AADS/bin/Debug/NETGeographic_d.dll
+!/AADS/bin/Debug/Images
+!/AADS/bin/Debug/Maps.json

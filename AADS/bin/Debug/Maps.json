@@ -1,0 +1,10 @@
+[
+  {
+    "Type": "GoogleMap",
+    "Name": "Map",
+    "MainMapMinZoom": 5,
+    "MainMapMaxZoom": 15,
+    "MiniMapMinZoom": 1,
+    "MiniMapMaxZoom": 15
+  }
+]

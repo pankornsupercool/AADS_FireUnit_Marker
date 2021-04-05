@@ -39,7 +39,7 @@ namespace AADS.Views.ShowCategory
 
         private void btnShowFireUnit_Click(object sender, EventArgs e)
         {
-            var Fireunitpage = new Views.FireUnit.main();
+            var Fireunitpage = new Views.FireUnit.MainFireunit();
             panelShowDetail.Controls.Clear();
             panelShowDetail.Controls.Add(Fireunitpage);
         }

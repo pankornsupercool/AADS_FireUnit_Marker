@@ -1,7 +1,7 @@
 ﻿
 namespace AADS.Views.FireUnit
 {
-    partial class main
+    partial class MainFireunit
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,157 +29,241 @@ namespace AADS.Views.FireUnit
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioBtnall = new System.Windows.Forms.RadioButton();
-            this.radioBtnlocalSite = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.txtDetail = new System.Windows.Forms.TextBox();
+            this.detailLabel = new System.Windows.Forms.Label();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnSummary = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtLocation = new System.Windows.Forms.TextBox();
+            this.cbbType = new System.Windows.Forms.ComboBox();
+            this.cbbNumber = new System.Windows.Forms.ComboBox();
+            this.cbbBatteryId = new System.Windows.Forms.ComboBox();
+            this.rdoNonOp = new System.Windows.Forms.RadioButton();
+            this.rdoLimited = new System.Windows.Forms.RadioButton();
+            this.rdoOp = new System.Windows.Forms.RadioButton();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // radioBtnall
+            // panel1
             // 
-            this.radioBtnall.AutoSize = true;
-            this.radioBtnall.Location = new System.Drawing.Point(215, 30);
-            this.radioBtnall.Margin = new System.Windows.Forms.Padding(2);
-            this.radioBtnall.Name = "radioBtnall";
-            this.radioBtnall.Size = new System.Drawing.Size(36, 17);
-            this.radioBtnall.TabIndex = 46;
-            this.radioBtnall.TabStop = true;
-            this.radioBtnall.Text = "All";
-            this.radioBtnall.UseVisualStyleBackColor = true;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.btnEdit);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.txtDetail);
+            this.panel1.Controls.Add(this.detailLabel);
+            this.panel1.Controls.Add(this.btnSubmit);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtLocation);
+            this.panel1.Controls.Add(this.cbbType);
+            this.panel1.Controls.Add(this.cbbNumber);
+            this.panel1.Controls.Add(this.cbbBatteryId);
+            this.panel1.Controls.Add(this.rdoNonOp);
+            this.panel1.Controls.Add(this.rdoLimited);
+            this.panel1.Controls.Add(this.rdoOp);
+            this.panel1.Location = new System.Drawing.Point(4, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(338, 503);
+            this.panel1.TabIndex = 0;
             // 
-            // radioBtnlocalSite
+            // btnEdit
             // 
-            this.radioBtnlocalSite.AutoSize = true;
-            this.radioBtnlocalSite.Location = new System.Drawing.Point(119, 30);
-            this.radioBtnlocalSite.Margin = new System.Windows.Forms.Padding(2);
-            this.radioBtnlocalSite.Name = "radioBtnlocalSite";
-            this.radioBtnlocalSite.Size = new System.Drawing.Size(96, 17);
-            this.radioBtnlocalSite.TabIndex = 45;
-            this.radioBtnlocalSite.TabStop = true;
-            this.radioBtnlocalSite.Text = "Local Site Only";
-            this.radioBtnlocalSite.UseVisualStyleBackColor = true;
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(84, 365);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(170, 33);
+            this.btnEdit.TabIndex = 16;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(84, 326);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(170, 33);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // txtDetail
+            // 
+            this.txtDetail.Location = new System.Drawing.Point(84, 198);
+            this.txtDetail.Name = "txtDetail";
+            this.txtDetail.Size = new System.Drawing.Size(176, 20);
+            this.txtDetail.TabIndex = 14;
+            // 
+            // detailLabel
+            // 
+            this.detailLabel.AutoSize = true;
+            this.detailLabel.Location = new System.Drawing.Point(9, 201);
+            this.detailLabel.Name = "detailLabel";
+            this.detailLabel.Size = new System.Drawing.Size(34, 13);
+            this.detailLabel.TabIndex = 13;
+            this.detailLabel.Text = "Detail";
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(84, 287);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(170, 33);
+            this.btnSubmit.TabIndex = 12;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 233);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Status";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Location";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Type";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Number";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 30);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(13, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Owner Site :";
+            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Battery ID";
             // 
-            // button1
+            // txtLocation
             // 
-            this.button1.Location = new System.Drawing.Point(67, 178);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 17);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtLocation.Location = new System.Drawing.Point(84, 160);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(176, 20);
+            this.txtLocation.TabIndex = 6;
             // 
-            // btnSummary
+            // cbbType
             // 
-            this.btnSummary.Location = new System.Drawing.Point(67, 141);
-            this.btnSummary.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSummary.Name = "btnSummary";
-            this.btnSummary.Size = new System.Drawing.Size(38, 34);
-            this.btnSummary.TabIndex = 41;
-            this.btnSummary.Text = "Summary";
-            this.btnSummary.UseVisualStyleBackColor = true;
+            this.cbbType.FormattingEnabled = true;
+            this.cbbType.Location = new System.Drawing.Point(84, 119);
+            this.cbbType.Name = "cbbType";
+            this.cbbType.Size = new System.Drawing.Size(121, 21);
+            this.cbbType.TabIndex = 5;
             // 
-            // btnView
+            // cbbNumber
             // 
-            this.btnView.Location = new System.Drawing.Point(67, 121);
-            this.btnView.Margin = new System.Windows.Forms.Padding(2);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(38, 17);
-            this.btnView.TabIndex = 40;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.cbbNumber.FormattingEnabled = true;
+            this.cbbNumber.Location = new System.Drawing.Point(84, 69);
+            this.cbbNumber.Name = "cbbNumber";
+            this.cbbNumber.Size = new System.Drawing.Size(121, 21);
+            this.cbbNumber.TabIndex = 4;
             // 
-            // btnModify
+            // cbbBatteryId
             // 
-            this.btnModify.Location = new System.Drawing.Point(59, 101);
-            this.btnModify.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(48, 17);
-            this.btnModify.TabIndex = 39;
-            this.btnModify.Text = "Modify";
-            this.btnModify.UseVisualStyleBackColor = true;
+            this.cbbBatteryId.FormattingEnabled = true;
+            this.cbbBatteryId.Location = new System.Drawing.Point(84, 24);
+            this.cbbBatteryId.Name = "cbbBatteryId";
+            this.cbbBatteryId.Size = new System.Drawing.Size(121, 21);
+            this.cbbBatteryId.TabIndex = 3;
             // 
-            // btnDel
+            // rdoNonOp
             // 
-            this.btnDel.Location = new System.Drawing.Point(67, 80);
-            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(38, 17);
-            this.btnDel.TabIndex = 38;
-            this.btnDel.Text = "Del";
-            this.btnDel.UseVisualStyleBackColor = true;
+            this.rdoNonOp.AutoSize = true;
+            this.rdoNonOp.Location = new System.Drawing.Point(194, 231);
+            this.rdoNonOp.Name = "rdoNonOp";
+            this.rdoNonOp.Size = new System.Drawing.Size(60, 17);
+            this.rdoNonOp.TabIndex = 2;
+            this.rdoNonOp.TabStop = true;
+            this.rdoNonOp.Text = "NonOP";
+            this.rdoNonOp.UseVisualStyleBackColor = true;
             // 
-            // btnAdd
+            // rdoLimited
             // 
-            this.btnAdd.Location = new System.Drawing.Point(67, 60);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(38, 17);
-            this.btnAdd.TabIndex = 37;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.rdoLimited.AutoSize = true;
+            this.rdoLimited.Location = new System.Drawing.Point(130, 231);
+            this.rdoLimited.Name = "rdoLimited";
+            this.rdoLimited.Size = new System.Drawing.Size(58, 17);
+            this.rdoLimited.TabIndex = 1;
+            this.rdoLimited.TabStop = true;
+            this.rdoLimited.Text = "Limited";
+            this.rdoLimited.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // rdoOp
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(110, 60);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(380, 251);
-            this.dataGridView1.TabIndex = 36;
+            this.rdoOp.AutoSize = true;
+            this.rdoOp.Location = new System.Drawing.Point(84, 231);
+            this.rdoOp.Name = "rdoOp";
+            this.rdoOp.Size = new System.Drawing.Size(40, 17);
+            this.rdoOp.TabIndex = 0;
+            this.rdoOp.TabStop = true;
+            this.rdoOp.Text = "OP";
+            this.rdoOp.UseVisualStyleBackColor = true;
             // 
-            // main
+            // MainFireunit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 362);
-            this.Controls.Add(this.radioBtnall);
-            this.Controls.Add(this.radioBtnlocalSite);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSummary);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.btnModify);
-            this.Controls.Add(this.btnDel);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "main";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.panel1);
+            this.Name = "MainFireunit";
+            this.Size = new System.Drawing.Size(545, 539);
+            this.Load += new System.EventHandler(this.main_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton radioBtnall;
-        private System.Windows.Forms.RadioButton radioBtnlocalSite;
+        private System.Windows.Forms.RadioButton rdoLimited;
+        private System.Windows.Forms.RadioButton rdoOp;
+        private System.Windows.Forms.RadioButton rdoNonOp;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnSummary;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Button btnModify;
-        private System.Windows.Forms.Button btnDel;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtLocation;
+        private System.Windows.Forms.ComboBox cbbType;
+        private System.Windows.Forms.ComboBox cbbNumber;
+        private System.Windows.Forms.ComboBox cbbBatteryId;
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.TextBox txtDetail;
+        private System.Windows.Forms.Label detailLabel;
+        public System.Windows.Forms.Button btnDelete;
+        public System.Windows.Forms.Button btnEdit;
+        public System.Windows.Forms.Panel panel1;
     }
 }

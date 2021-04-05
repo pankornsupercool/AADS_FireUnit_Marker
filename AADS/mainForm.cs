@@ -1,4 +1,6 @@
-﻿using Demo.WindowsForms.CustomMarkers;
+﻿
+using AADS.Views.FireUnit;
+using Demo.WindowsForms.CustomMarkers;
 using Demo.WindowsForms.Forms;
 using GMap.NET;
 using GMap.NET.MapProviders;
@@ -26,9 +28,10 @@ namespace AADS
 {
     public partial class MainForm : Form
     {
+        public FireunitEvent handler;
         private List<PointLatLng> _points = new List<PointLatLng>();
         internal readonly GMapOverlay top = new GMapOverlay();
-        internal readonly GMapOverlay markersP = new GMapOverlay("markersP");
+        GMapOverlay markersP = new GMapOverlay("markersP");
         internal readonly GMapOverlay Radar = new GMapOverlay("Radar");
         internal readonly GMapOverlay lineDistance = new GMapOverlay("lineDistance");
         internal readonly GMapOverlay polygons = new GMapOverlay("polygons");
@@ -39,13 +42,14 @@ namespace AADS
         internal readonly GMapOverlay midlineDistance = new GMapOverlay("midlineDistance");
 
         internal readonly GMapOverlay minMapOverlay = new GMapOverlay("minMapOverlay");
+        //
 
         public GMapControl gMap;
         public TrackManager trackHandler = new TrackManager();
         List<MapMode> mapModes = new List<MapMode>();
         GMapMarker currentMarker;
         GMapMarkerRect CurentRectMarker = null;
-        GMapMarker markertag = null;
+        public static GMapMarker currentMarkerTag;
         GMapPolygon polygon;
         string action = null;
         static int simID = 300;
@@ -181,6 +185,7 @@ namespace AADS
         }
         public MainForm()
         {
+            handler = FireunitEvent.Instance;
             InitializeComponent();
             Instance = this;
             gMap = mainMap;
@@ -233,7 +238,7 @@ namespace AADS
                     mainMap.MouseDown += new MouseEventHandler(mainMap_MouseDown);
                     mainMap.MouseMove += new MouseEventHandler(mainMap_MouseMove);
                     mainMap.MouseClick += new MouseEventHandler(mainMap_MouseClick);
-
+                    //mainMap.MouseClick += new MouseEventHandler(mainMap_MouseClick2);
                     mainMap.OnMarkerClick += new MarkerClick(mainMap_OnMarkerClick);
                 }
 
@@ -293,10 +298,7 @@ namespace AADS
         {
             updateMinMap();
         }
-        void mainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
-        {
 
-        }
 
         bool isMouseDown = false;
         bool isRightClick = false;
@@ -317,25 +319,7 @@ namespace AADS
             lastLocation = e.Location;
         }
 
-        void mainMap_MouseClick(object sender, MouseEventArgs e)
-        {
-            PointLatLng pnew = mainMap.FromLocalToLatLng(e.X, e.Y);
-            if (e.Button == MouseButtons.Left)
-            {
-                currentMarker.Position = pnew;
-            }
-           
-            if (action != null)
-            {
-                string ca = action;
-                action = null;
-                if (ca == "fixedPointAdd")
-                {
-                    labelCurrentAction.Text = "Action: Free";
-                    callFixedPoint();
-                }
-            }
-        }
+        
         #endregion
 
         #region -- data Code --
@@ -396,20 +380,20 @@ namespace AADS
                 RadarClient.Exit();
             }
         }
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-            timeNow.Start();
-            timerCheckConnection.Start();
-            updateMinMap();
-            updateCmbMapMode();
-            setupRadar();
-            mainMap.Position = radarLocation;
-            cmbMapMode.SelectedIndex = 0;
-            panelRight.Height = this.Height - panelControl.Height - panelTop.Height - panelBottom.Height;
-            panelRight.Location = new Point(1950,93);
-            label27Location = new Point(this.Width - label27.Width, label27.Location.Y);
 
+
+
+
+        private void Handler_onFireunitChanged2(FireunitEventArgs2 e)
+        {
+            // Just pass in
         }
+
+        private void Handler_onFireunitChanged(FireunitEventArgs e)
+        {
+            // Just pass in 
+        }
+
         private void closeBox_Click(object sender, EventArgs e)
         {
             timerClose.Start();
@@ -593,5 +577,208 @@ namespace AADS
                 labelTrackCount.Text = "0";
             }
         }
+
+
+
+
+
+
+
+
+        public event EventHandler<int> RaiseDelete;
+        public event EventHandler HideDelete;
+        public event EventHandler ClearScreen;
+        public event EventHandler<int> isSelected;
+        public event EventHandler<GMapMarker> CurrentMarker;
+        public event EventHandler<int> TagNumber;
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            mainMap.ShowCenter = false;
+            //handler = FireunitEvent.Instance;
+
+            handler.onFireunitChanged += Handler_onFireunitChanged;
+            handler.onFireunitChanged2 += Handler_onFireunitChanged2;
+            //RaiseDelete += MainForm_RaiseDelete;
+            //HideDelete += MainForm_HideDelete;
+            MainFireunit.DeleteEvent += MainFireunit_DeleteEvent;
+            //MainFireunit.EditEvent += MainFireunit_EditEvent;
+
+
+            timeNow.Start();
+            timerCheckConnection.Start();
+            updateMinMap();
+            updateCmbMapMode();
+            setupRadar();
+            mainMap.Position = radarLocation;
+            cmbMapMode.SelectedIndex = 0;
+            panelRight.Height = this.Height - panelControl.Height - panelTop.Height - panelBottom.Height;
+            panelRight.Location = new Point(1950, 93);
+            label27Location = new Point(this.Width - label27.Width, label27.Location.Y);
+
+        }
+
+
+
+
+
+        //private void btnDelete_Click(object sender, EventArgs e)
+        //{
+        //    if(currentMarkerTag != null)
+        //    {
+        //        markersP.Markers.Remove(currentMarkerTag);
+        //        FireunitList.Tag.Remove(Convert.ToInt32(currentMarkerTag.Tag));
+        //        currentMarkerTag = null;
+        //    }
+        //}
+
+
+        void mainMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+
+            //MessageBox.Show(FireUnitTag.tag.Count.ToString());
+            //foreach (var items in FireUnitTag.tag)
+            //{
+            //    MessageBox.Show("This : ",items.ToString());
+            //}     
+            currentMarkerTag = item;
+            //MessageBox.Show(currentMarkerTag.Tag.ToString(), "onMarkerClick");
+
+            int idx = FireunitList.Tag.IndexOf(Convert.ToInt32(currentMarkerTag.Tag));
+            if(currentMarkerTag.Tag != null)
+            {
+                try
+                {
+                    if (FireunitList.Tag.Contains(Convert.ToInt32(currentMarkerTag.Tag)))
+                    {
+                        //MessageBox.Show(idx.ToString(), "Current tag index on list");
+                        CurrentMarker?.Invoke(this, item);
+                        isSelected?.Invoke(this, idx);
+                        TagNumber?.Invoke(this, Convert.ToInt32(currentMarkerTag.Tag));
+                        RaiseDelete?.Invoke(this, idx);
+
+                    }
+                    else
+                    {
+                        isSelected?.Invoke(this, idx);
+                        RaiseDelete?.Invoke(this, idx);
+                        //MessageBox.Show("Unknowed");
+                    }
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show(E.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Finally found you fk");
+                MessageBox.Show("Tag is Null");
+                HideDelete?.Invoke(this, EventArgs.Empty);
+            }
+
+
+
+            
+
+            //(FireUnitTag.tag.Contains(currentMarkerTag.Tag.ToString()))
+            //{
+            //    FireunitEventArgs2 args2 = new FireunitEventArgs2
+            //    {
+            //        Location = item.Position.ToString(),
+            //        Detail = item.Tag.ToString()
+            //    };
+            //    FireunitEvent handler = FireunitEvent.Instance;
+            //    handler.InvokeFireunitChanged2(args2);
+            //    btnDelete.Enabled = true;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Unknowed");
+            //}
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    MessageBox.Show("Right Click");
+            //}
+        }
+
+
+        void mainMap_MouseClick(object sender, MouseEventArgs e)
+        {
+            PointLatLng pnew = mainMap.FromLocalToLatLng(e.X, e.Y);
+            if (e.Button == MouseButtons.Left)
+            {
+                currentMarker.Position = pnew;
+                GlobalFireUnit.LatLng = PositionConverter.ParsePointToString(pnew, "Signed Degree");
+                GlobalFireUnit.Lat = pnew.Lat;
+                GlobalFireUnit.Lng = pnew.Lng;
+                FireunitEventArgs args = new FireunitEventArgs
+                {
+                    LatLng = GlobalFireUnit.LatLng
+                };
+                FireunitEvent handler = FireunitEvent.Instance;
+                handler.InvokeFireunitChanged(args);
+                ClearScreen?.Invoke(this, EventArgs.Empty);
+            }else if (e.Button == MouseButtons.Right)
+            {
+
+            }
+
+            if (action != null)
+            {
+                string ca = action;
+                action = null;
+                if (ca == "fixedPointAdd")
+                {
+                    labelCurrentAction.Text = "Action: Free";
+                    callFixedPoint();
+                }
+            }
+
+
+        }
+
+
+        private void MainFireunit_DeleteEvent(object sender, EventArgs e)
+        {
+            var idx_toremove = Convert.ToInt32(currentMarkerTag.Tag);
+            if (currentMarkerTag != null)
+            {
+                markersP.Markers.Remove(currentMarkerTag);
+
+                var idx_tag_remove = FireunitList.Tag.IndexOf(idx_toremove);
+                FireunitList.Tag.Remove(idx_toremove);
+
+                //MessageBox.Show(idx_tag_remove.ToString());
+
+                FireunitList.BatteryID.RemoveAt(idx_tag_remove);
+                FireunitList.Number.RemoveAt(idx_tag_remove);
+                FireunitList.Type.RemoveAt(idx_tag_remove);
+                FireunitList.Location.RemoveAt(idx_tag_remove);
+                FireunitList.Detail.RemoveAt(idx_tag_remove);
+                FireunitList.Status.RemoveAt(idx_tag_remove);
+
+                currentMarkerTag = null;
+                //MessageBox.Show($"Delete index {idx_toremove.ToString()}");
+                MessageBox.Show("Delete Completed!");
+            }
+            else
+            {
+                MessageBox.Show("Select Marker Needed");
+                
+            }
+
+            HideDelete?.Invoke(this, EventArgs.Empty);
+        }
+
+        //private void MainFireunit_EditEvent(object sender, EventArgs e)
+        //{
+        //    var idx_toEdit = Convert.ToInt32(currentMarkerTag.Tag);
+        //    if (currentMarkerTag != null)
+        //    {
+                
+        //    }
+        //}
+
     }
 }

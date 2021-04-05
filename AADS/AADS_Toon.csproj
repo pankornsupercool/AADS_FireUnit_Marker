@@ -154,6 +154,18 @@
     <Compile Include="data\en_deCode\Encoder.cs" />
     <Compile Include="data\Mission.cs" />
     <Compile Include="data\Radar.cs" />
+    <Compile Include="Views\FireUnit\FireunitList.cs" />
+    <Compile Include="Views\FireUnit\FireunitObject.cs" />
+    <Compile Include="Views\FireUnit\FireUnitTag.cs" />
+    <Compile Include="Views\FireUnit\MarkerDetail.cs" />
+    <Compile Include="Views\FireUnit\FireUnitDelete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\FireUnit\FireUnitDelete.Designer.cs">
+      <DependentUpon>FireUnitDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FireUnit\FireunitEvent.cs" />
+    <Compile Include="Views\FireUnit\GlobalFireUnit.cs" />
     <Compile Include="GMarkerTrack.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -391,6 +403,9 @@
     <Compile Include="Views\WeatherForecast\summary.Designer.cs">
       <DependentUpon>summary.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\FireUnit\FireUnitDelete.resx">
+      <DependentUpon>FireUnitDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

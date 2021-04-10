@@ -22,7 +22,7 @@ namespace AADS.Views.FireUnit
         // Object to add
         string[] batteryID = { "Tiger", "Lion", "Snake", "Phoenix" };
         string[] number = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
-        string[] type = { "Coffee", "Education" };
+        string[] type = { "Infomation unit", "Education unit" };
         public static int temp = 0;
         public string status;
         public string typeStatus;
@@ -303,7 +303,7 @@ namespace AADS.Views.FireUnit
         {
             if (cbbType.SelectedIndex == 0)
             {
-                bmpMarker = (Bitmap)Image.FromFile("images/008-coffee.png");
+                bmpMarker = (Bitmap)Image.FromFile("images/018-information.png");
             }
             else if (cbbType.SelectedIndex == 1)
             {
@@ -321,7 +321,7 @@ namespace AADS.Views.FireUnit
             {
                 try
                 {
-                    newImage = ResizeBitmap(bmpMarker, 30, 30);
+                    newImage = ResizeBitmap(bmpMarker, 40, 40);
                     PointLatLng point = new PointLatLng(GlobalFireUnit.Lat, GlobalFireUnit.Lng);
                     var marker = new GMarkerGoogle(point, newImage);
                     GMapOverlay overlay = MainForm.GetInstance().GetOverlay("markersP");
